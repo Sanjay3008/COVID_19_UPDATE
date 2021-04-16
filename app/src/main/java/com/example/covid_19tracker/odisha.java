@@ -120,6 +120,7 @@ public class odisha extends AppCompatActivity implements View.OnClickListener {
                         confirmed[i]=district.getInt("confirmed");
                         recovered[i]=district.getInt("recovered");
                         death[i]=district.getInt("deceased");
+
                     }
                     int totalactive=0;
                     int totalconfirmed=0;

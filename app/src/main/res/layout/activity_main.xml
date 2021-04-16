@@ -5,18 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
     android:background="#fffafa"
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,19 +33,30 @@
             android:textAllCaps="true"
             android:textColor="#000"
             android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/share_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="127dp"
-            android:background="@drawable/ic_share_black_24dp" />
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#D4F39B"
+        android:src="@drawable/self_assess"
+        android:id="@+id/self_assess"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:fabSize="auto"
+        android:tooltipText="Self Assessment for Covid"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxImageSize="35dp" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +70,34 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumbTint="#589CC9"
+                    android:trackTint="#B6B5B5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="NOTIFICATIONS"
+                    android:textAllCaps="true"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/swithc_info"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/mark" />
+            </LinearLayout>
 
             <GridLayout
                 android:layout_width="wrap_content"
@@ -232,9 +272,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/montserrat"
                             android:text="@string/helpline"
                             android:textAlignment="center"
-                            android:fontFamily="@font/montserrat"
                             android:textAllCaps="true"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
@@ -243,6 +283,7 @@
                         </TextView>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/hospital_nearby"
                     android:layout_width="150dp"
@@ -267,13 +308,13 @@
                             android:textAllCaps="true"
                             android:textColor="#ffffff"
                             android:textSize="18sp"
-                            android:textStyle="bold">
-                        </TextView>
+                            android:textStyle="bold"></TextView>
+
                         <ImageView
                             android:layout_width="60dp"
-                            android:src="@drawable/maps"
+                            android:layout_height="60dp"
                             android:layout_marginStart="30dp"
-                            android:layout_height="60dp"/>
+                            android:src="@drawable/maps" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -284,6 +325,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -293,6 +335,7 @@
                     android:textAllCaps="true"
                     android:textColor="#000000"
                     android:textSize="20sp" />
+
                 <com.asksira.loopingviewpager.LoopingViewPager
                     android:id="@+id/viewslider"
                     android:layout_width="290dp"
@@ -304,261 +347,279 @@
                     app:autoScroll="true"
                     app:isInfinite="true"
                     app:scrollInterval="8000"
-                    app:wrap_content="true">
-                </com.asksira.loopingviewpager.LoopingViewPager>
+                    app:wrap_content="true"></com.asksira.loopingviewpager.LoopingViewPager>
+
                 <TextView
+                    android:id="@+id/heading_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:id="@+id/heading_state"
-                    android:visibility="gone"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="#000000"
-                    android:textSize="19sp" />
+                    android:textSize="19sp"
+                    android:visibility="gone" />
             </LinearLayout>
             <!-- state daily updates-->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:cardCornerRadius="15dp"
-                app:cardBackgroundColor="#F8D9A2"
                 android:layout_marginBottom="15dp"
-                android:layout_height="wrap_content">
+                app:cardBackgroundColor="#F8D9A2"
+                app:cardCornerRadius="15dp">
+
                 <LinearLayout
+                    android:id="@+id/current_state_head"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:id="@+id/current_state_head"
-
                     android:layout_marginStart="20dp"
-                    android:orientation="vertical">
+
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:layout_height="wrap_content">
+                        android:orientation="horizontal">
+
                         <ImageView
                             android:layout_width="30dp"
-                            android:layout_marginTop="6dp"
-                            android:src="@drawable/location"
+                            android:layout_height="25dp"
                             android:layout_marginStart="40dp"
-                            android:layout_height="25dp"/>
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/location" />
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:id="@+id/current_state"
-                            android:textSize="20sp"
-                            android:textColor="#000000"
-                            android:layout_marginStart="20dp"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="25dp">
-                        </TextView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="3dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_marginTop="6dp"
-                            android:src="@drawable/date"
-                            android:layout_marginStart="40dp"
-                            android:layout_height="25dp"/>
-                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:id="@+id/current_date"
-                            android:textSize="20sp"
-                            android:textColor="#000000"
+                            android:layout_height="25dp"
                             android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="25dp">
-                        </TextView>
+                            android:textColor="#000000"
+                            android:textSize="20sp"></TextView>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/date" />
+
+                        <TextView
+                            android:id="@+id/current_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textColor="#000000"
+                            android:textSize="20sp"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:layout_height="match_parent">
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/montserrat"
                             android:text="@string/confirmed"
+                            android:textAllCaps="true"
                             android:textColor="#FFEF6C00"
-                            android:textSize="18sp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="match_parent">
-                        </TextView>
+                            android:textSize="18sp"></TextView>
+
                         <TextView
                             android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="40dp"
+                            android:fontFamily="@font/montserrat"
                             android:text="@string/recovered"
+                            android:textAllCaps="true"
                             android:textColor="#FF2E7D32"
-                            android:textSize="18sp"
-                            android:layout_marginStart="40dp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="match_parent">
-                        </TextView>
+                            android:textSize="18sp"></TextView>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
                         android:id="@+id/current_state2"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/state_daily_confirmed"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
-                            android:layout_marginEnd="85dp"
-                            android:layout_marginStart="40dp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/state_daily_recovered"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
-                            android:layout_marginStart="40dp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
-                    </LinearLayout>
-                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/state_daily_confirmed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginEnd="85dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textAllCaps="true"
+                            android:textColor="#000000"
+                            android:textSize="16sp"></TextView>
+
+                        <TextView
+                            android:id="@+id/state_daily_recovered"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textAllCaps="true"
+                            android:textColor="#000000"
+                            android:textSize="16sp"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/current_state3"
-                        android:layout_height="match_parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="@string/death"
-                            android:textColor="#FF1B5BFD"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:textSize="18sp"
                             android:layout_marginStart="105dp"
-                            android:textAllCaps="true"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="match_parent">
-                        </TextView>
+                            android:text="@string/death"
+                            android:textAllCaps="true"
+                            android:textColor="#FF1B5BFD"
+                            android:textSize="18sp"></TextView>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:orientation="horizontal"
                         android:id="@+id/current_state4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginBottom="15dp"
-                        android:layout_height="match_parent">
+                        android:orientation="horizontal">
+
                         <TextView
-                            android:layout_width="match_parent"
                             android:id="@+id/state_daily_death"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="122dp"
-                            android:textAllCaps="true"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
+                            android:textAllCaps="true"
+                            android:textColor="#000000"
+                            android:textSize="16sp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <TextView
+                android:id="@+id/test1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:id="@+id/test1"
-                android:visibility="gone"
                 android:text="Your state"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
+
             <TextView
+                android:id="@+id/test2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/test2"
-                android:visibility="gone"
                 android:fontFamily="@font/montserrat"
                 android:text="Tests and vaccination"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:cardCornerRadius="15dp"
-                app:cardBackgroundColor="#EBBF75"
                 android:layout_marginBottom="15dp"
-                android:layout_height="wrap_content">
+                app:cardBackgroundColor="#EBBF75"
+                app:cardCornerRadius="15dp">
+
                 <LinearLayout
+                    android:id="@+id/current_state_test_vacc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/current_state_test_vacc"
-                    android:visibility="gone"
                     android:layout_marginStart="20dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:layout_height="wrap_content">
+                        android:orientation="horizontal">
+
                         <ImageView
                             android:layout_width="30dp"
-                            android:layout_marginTop="6dp"
-                            android:src="@drawable/location"
+                            android:layout_height="25dp"
                             android:layout_marginStart="40dp"
-                            android:layout_height="25dp"/>
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/location" />
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:id="@+id/current_state_test"
-                            android:textSize="20sp"
-                            android:textColor="#000000"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
                             android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="25dp">
-                        </TextView>
+                            android:textColor="#000000"
+                            android:textSize="20sp"></TextView>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
                         android:id="@+id/test_vacci_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:layout_height="match_parent">
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="20dp"
-                            android:layout_height="match_parent">
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/test_sample">
-                            </ImageView>
+                                android:src="@drawable/test_sample"></ImageView>
+
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:text="tested"
-                                android:textColor="#AD1457"
-                                android:textSize="18sp"
-                                android:textAllCaps="true"
+                                android:layout_height="match_parent"
                                 android:fontFamily="@font/montserrat"
-                                android:layout_height="match_parent">
-                            </TextView>
+                                android:text="tested"
+                                android:textAllCaps="true"
+                                android:textColor="#AD1457"
+                                android:textSize="18sp"></TextView>
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="60dp"
-                            android:layout_height="match_parent">
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
@@ -566,216 +627,228 @@
                                 android:src="@drawable/vaccie">
 
                             </ImageView>
+
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:text="vaccinated"
-                                android:textColor="#A76833"
-                                android:textSize="18sp"
-                                android:textAllCaps="true"
+                                android:layout_height="match_parent"
                                 android:fontFamily="@font/montserrat"
-                                android:layout_height="match_parent">
-                            </TextView>
+                                android:text="vaccinated"
+                                android:textAllCaps="true"
+                                android:textColor="#A76833"
+                                android:textSize="18sp"></TextView>
 
                         </LinearLayout>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
                         android:id="@+id/state_test_vacc_cout"
-                        android:layout_height="match_parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
                         <TextView
-                            android:layout_width="wrap_content"
                             android:id="@+id/state_tested"
-                            android:textColor="#AD1457"
-                            android:textSize="16sp"
-                            android:layout_marginEnd="85dp"
-                            android:layout_marginStart="10dp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
-                        <TextView
                             android:layout_width="wrap_content"
-                            android:id="@+id/state_vacciated"
-                            android:textColor="#A76833"
-                            android:textSize="16sp"
-                            android:layout_marginStart="8dp"
-                            android:textAllCaps="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="85dp"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
+                            android:textAllCaps="true"
+                            android:textColor="#AD1457"
+                            android:textSize="16sp"></TextView>
+
+                        <TextView
+                            android:id="@+id/state_vacciated"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textAllCaps="true"
+                            android:textColor="#A76833"
+                            android:textSize="16sp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <TextView
+                android:id="@+id/heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:id="@+id/heading"
-                android:visibility="gone"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="#000000"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                android:visibility="gone" />
             <!-- city status -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:cardCornerRadius="15dp"
-                app:cardBackgroundColor="#E7EBB2"
                 android:layout_marginBottom="15dp"
-                android:layout_height="wrap_content">
+                app:cardBackgroundColor="#E7EBB2"
+                app:cardCornerRadius="15dp">
+
                 <LinearLayout
+                    android:id="@+id/current_head"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/current_head"
-                    android:visibility="gone"
                     android:layout_marginStart="20dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="3dp"
                         android:id="@+id/location"
-                        android:visibility="gone"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
                         <ImageView
                             android:layout_width="30dp"
+                            android:layout_height="25dp"
                             android:layout_marginTop="6dp"
-                            android:src="@drawable/location"
-                            android:layout_height="25dp"/>
+                            android:src="@drawable/location" />
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:id="@+id/current_location"
-                            android:textSize="20sp"
-                            android:textColor="#000000"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="25dp">
-                        </TextView>
+                            android:textColor="#000000"
+                            android:textSize="20sp"></TextView>
+
                         <ProgressBar
-                            android:layout_width="20dp"
                             android:id="@+id/progressbar"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginStart="250dp"
-                            android:visibility="gone"
                             android:indeterminateTint="#D65BA3"
-                            android:layout_height="20dp"/>
+                            android:visibility="gone" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:visibility="gone"
-                        android:orientation="horizontal"
                         android:id="@+id/current1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:layout_height="match_parent">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
                         <TextView
                             android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/montserrat"
                             android:text="@string/confirmed"
+                            android:textAllCaps="true"
                             android:textColor="#FFEF6C00"
-                            android:textSize="18sp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="match_parent">
-                        </TextView>
+                            android:textSize="18sp"></TextView>
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="@string/active"
-                            android:textColor="#FFDD2C00"
-                            android:textSize="18sp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="60dp"
-                            android:textAllCaps="true"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="match_parent">
-                        </TextView>
+                            android:text="@string/active"
+                            android:textAllCaps="true"
+                            android:textColor="#FFDD2C00"
+                            android:textSize="18sp"></TextView>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
                         android:id="@+id/current2"
-                        android:layout_height="match_parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
                         <TextView
-                            android:layout_width="wrap_content"
                             android:id="@+id/current_confirmed"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
                             android:layout_marginEnd="85dp"
-                            android:layout_marginStart="10dp"
-                            android:textAllCaps="true"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
+                            android:textAllCaps="true"
+                            android:textColor="#000000"
+                            android:textSize="16sp"></TextView>
+
                         <TextView
-                            android:layout_width="wrap_content"
                             android:id="@+id/current_active"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="50dp"
-                            android:textAllCaps="true"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
+                            android:textAllCaps="true"
+                            android:textColor="#000000"
+                            android:textSize="16sp"></TextView>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
                         android:id="@+id/current3"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="@string/recovered"
-                            android:textColor="#FF2E7D32"
-                            android:textSize="18sp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="match_parent">
-                        </TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="@string/death"
-                            android:textColor="#FF1B5BFD"
-                            android:textSize="18sp"
-                            android:layout_marginStart="58dp"
-                            android:textAllCaps="true"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_height="match_parent">
-                        </TextView>
-                    </LinearLayout>
-                    <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:id="@+id/current4"
-                        android:visibility="gone"
-                        android:layout_marginBottom="15dp"
-                        android:layout_height="match_parent">
+                        android:visibility="gone">
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:id="@+id/current_recovered"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
-                            android:layout_marginEnd="90dp"
-                            android:layout_marginStart="10dp"
-                            android:textAllCaps="true"
+                            android:layout_height="match_parent"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
+                            android:text="@string/recovered"
+                            android:textAllCaps="true"
+                            android:textColor="#FF2E7D32"
+                            android:textSize="18sp"></TextView>
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:id="@+id/current_death"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="58dp"
-                            android:textAllCaps="true"
                             android:fontFamily="@font/montserrat"
-                            android:layout_height="wrap_content">
-                        </TextView>
+                            android:text="@string/death"
+                            android:textAllCaps="true"
+                            android:textColor="#FF1B5BFD"
+                            android:textSize="18sp"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/current4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/current_recovered"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="90dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textAllCaps="true"
+                            android:textColor="#000000"
+                            android:textSize="16sp"></TextView>
+
+                        <TextView
+                            android:id="@+id/current_death"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="58dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textAllCaps="true"
+                            android:textColor="#000000"
+                            android:textSize="16sp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -792,8 +865,8 @@
                         android:textAllCaps="true"
                         android:textColor="#000000"
                         android:textSize="20sp"
-                        android:textStyle="bold">
-                    </TextView>
+                        android:textStyle="bold"></TextView>
+
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/piechart"
                         android:layout_width="250dp"
@@ -803,17 +876,18 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/state_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:textAllCaps="true"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:text="@string/india_s_covid_statistics"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/montserrat"
+                android:text="@string/india_s_covid_statistics"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#000000"
                 android:textSize="20sp">
 
             </TextView>
@@ -997,10 +1071,10 @@
                             android:textAlignment="center"
                             android:textColor="#1b99fd"
                             android:textSize="16sp"
-                            android:textStyle="bold">
-                        </TextView>
+                            android:textStyle="bold"></TextView>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="90dp"
@@ -1045,6 +1119,7 @@
                         </TextView>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="90dp"
@@ -1090,6 +1165,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </GridLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1102,489 +1178,495 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/montserrat"
+                    android:text="@string/state_wise_statistics"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="#000000"
-                    android:text="@string/state_wise_statistics"
                     android:textSize="17sp"
-                    android:textStyle="bold">
-                </TextView>
+                    android:textStyle="bold"></TextView>
+
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="@string/click_on_below_state_to_get_each_state_stattictics"
-                    android:textAllCaps="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
+                    android:text="@string/click_on_below_state_to_get_each_state_stattictics"
                     android:textAlignment="center"
-                    android:layout_height="wrap_content"/>
+                    android:textAllCaps="true"
+                    android:textSize="12sp" />
+
                 <HorizontalScrollView
+                    android:id="@+id/state_button_scroll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/state_button_scroll"
                     android:layout_marginTop="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <Button
-                            android:layout_width="wrap_content"
                             android:id="@+id/andaman"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
+                            android:fontFamily="@font/montserrat"
+                            android:padding="3dp"
                             android:text="@string/andaman_nicoabr"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_marginStart="5dp"
-                            android:padding="3dp"
-                            android:background="@drawable/custom_button"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:layout_height="30dp">
-                        </Button>
+                            android:textSize="14sp"></Button>
+
                         <Button
-                            android:layout_width="wrap_content"
-                            android:text="@string/andra_pradesh"
                             android:id="@+id/andra"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
                             android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
                             android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
+                            android:text="@string/andra_pradesh"
+                            android:textSize="14sp"></Button>
+
                         <Button
-                            android:layout_width="wrap_content"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/arunachal_pradesh"
                             android:id="@+id/arunachal"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/assam"
+                            android:padding="3dp"
+                            android:text="@string/arunachal_pradesh"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/assam"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/bihar"
+                            android:padding="3dp"
+                            android:text="@string/assam"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/bihar"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/chandigarh"
+                            android:padding="3dp"
+                            android:text="@string/bihar"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/chandigarh"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/chattisgarh"
+                            android:padding="3dp"
+                            android:text="@string/chandigarh"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/chattisgarh"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/delhi"
+                            android:padding="3dp"
+                            android:text="@string/chattisgarh"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/delhi"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/daman_diu"
+                            android:padding="3dp"
+                            android:text="@string/delhi"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/daman_diu"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/goa"
+                            android:padding="3dp"
+                            android:text="@string/daman_diu"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/goa"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/gujarat"
+                            android:padding="3dp"
+                            android:text="@string/goa"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/gujarat"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/himachal_pradesh"
+                            android:padding="3dp"
+                            android:text="@string/gujarat"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/himachal"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/haryana"
+                            android:padding="3dp"
+                            android:text="@string/himachal_pradesh"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/haryana"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/jharkhand"
+                            android:padding="3dp"
+                            android:text="@string/haryana"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/jharkhand"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/jammu_khasmir"
+                            android:padding="3dp"
+                            android:text="@string/jharkhand"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/jammu"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/karnataka"
+                            android:padding="3dp"
+                            android:text="@string/jammu_khasmir"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/karnataka"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/kerala"
+                            android:padding="3dp"
+                            android:text="@string/karnataka"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/kerala"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/ladakh"
+                            android:padding="3dp"
+                            android:text="@string/kerala"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/ladakh"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/lakshadweep"
+                            android:padding="3dp"
+                            android:text="@string/ladakh"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/lakshadweep"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/maharastra"
+                            android:padding="3dp"
+                            android:text="@string/lakshadweep"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/maharastra"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/meghalaya"
+                            android:padding="3dp"
+                            android:text="@string/maharastra"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/meghalaya"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/manipur"
+                            android:padding="3dp"
+                            android:text="@string/meghalaya"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/manipur"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/madhya_pradesh"
+                            android:padding="3dp"
+                            android:text="@string/manipur"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/madhya_pradesh"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/mizoram"
+                            android:padding="3dp"
+                            android:text="@string/madhya_pradesh"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/mizoram"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/nagaland"
+                            android:padding="3dp"
+                            android:text="@string/mizoram"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/nagaland"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/odisha"
+                            android:padding="3dp"
+                            android:text="@string/nagaland"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/odisha"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/punjab"
+                            android:padding="3dp"
+                            android:text="@string/odisha"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/punjab"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/puducherry"
+                            android:padding="3dp"
+                            android:text="@string/punjab"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/puducherry"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/rajasthan"
+                            android:padding="3dp"
+                            android:text="@string/puducherry"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/rajasthan"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/sikkim"
+                            android:padding="3dp"
+                            android:text="@string/rajasthan"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/sikkim"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
-                            android:text="@string/telangana"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
+                            android:fontFamily="@font/montserrat"
+                            android:padding="3dp"
+                            android:text="@string/sikkim"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/telangana"
-                            android:fontFamily="@font/montserrat"
-                            android:background="@drawable/custom_button1"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button1"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/tamil_nadu"
+                            android:padding="3dp"
+                            android:text="@string/telangana"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/tamil_nadu"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button2"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/tripura"
+                            android:padding="3dp"
+                            android:text="@string/tamil_nadu"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/tripura"
-                            android:background="@drawable/custom_button"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/uttar_pradesh"
+                            android:padding="3dp"
+                            android:text="@string/tripura"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/uttar"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
                             android:background="@drawable/custom_button1"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
-                            android:layout_width="wrap_content"
                             android:fontFamily="@font/montserrat"
-                            android:text="@string/uttarakhand"
+                            android:padding="3dp"
+                            android:text="@string/uttar_pradesh"
+                            android:textSize="14sp"></Button>
+
+                        <Button
                             android:id="@+id/uttarkhand"
-                            android:background="@drawable/custom_button2"
                             style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
-                        <Button
                             android:layout_width="wrap_content"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/west_bengal"
-                            android:id="@+id/west"
-                            android:background="@drawable/custom_button"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textSize="14sp"
-                            android:padding="3dp"
+                            android:layout_height="30dp"
                             android:layout_marginStart="5dp"
-                            android:layout_height="30dp">
-                        </Button>
+                            android:background="@drawable/custom_button2"
+                            android:fontFamily="@font/montserrat"
+                            android:padding="3dp"
+                            android:text="@string/uttarakhand"
+                            android:textSize="14sp"></Button>
+
+                        <Button
+                            android:id="@+id/west"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/custom_button"
+                            android:fontFamily="@font/montserrat"
+                            android:padding="3dp"
+                            android:text="@string/west_bengal"
+                            android:textSize="14sp"></Button>
                     </LinearLayout>
                 </HorizontalScrollView>
+
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="@string/swipe_right_to_view_state_wise_statictics"
-                    android:textAllCaps="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="12sp"
-                    android:layout_marginTop="10dp"
+                    android:text="@string/swipe_right_to_view_state_wise_statictics"
                     android:textAlignment="center"
-                    android:layout_height="wrap_content"/>
+                    android:textAllCaps="true"
+                    android:textSize="12sp" />
+
                 <HorizontalScrollView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp">
+
                     <TableLayout
-                        android:layout_width="wrap_content"
-                        android:orientation="vertical"
                         android:id="@+id/state_table"
-                        android:layout_height="wrap_content">
-                    </TableLayout>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></TableLayout>
                 </HorizontalScrollView>
             </LinearLayout>
         </LinearLayout>
+
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

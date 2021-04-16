@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#D3F3AE"
+    android:layout_height="match_parent"
+    tools:context=".Covid_Predict">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textColor="#D7030303"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="Server Status"
+            android:fontFamily="@font/montserrat"/>
+
+        <Switch
+            android:id="@+id/switch_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:checked="false"
+            android:layout_gravity="center_vertical"
+            android:focusableInTouchMode="true"
+            android:textOn="Connected"
+            android:thumb="@drawable/thumb" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/server_info"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="60dp"
+            android:src="@drawable/server_ifo"/>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="#9AD5EC"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Covid Self Assessment"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#27722C"
+                android:textSize="25sp"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/self_checkup"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:id="@+id/assess_info"
+                android:layout_marginStart="10dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:textColor="#F57C00"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="Please provide accurate answers to the Questions below to get accurate assessment"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="#9AD5EC"
+        app:cardCornerRadius="20dp"
+        android:layout_height="220dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="25sp"
+                android:id="@+id/questions"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#7B1FA2"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:text="Are you Ready for the questions ?"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="YES"
+                    android:visibility="gone"
+                    android:id="@+id/assess_yes"
+                    android:backgroundTint="#1D5534"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="#fff"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NO"
+                    android:id="@+id/assess_no"
+                    android:visibility="gone"
+                    android:backgroundTint="#D32F2F"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="#fff"/>
+
+            </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/assess_submit_start"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#DB7A62"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/montserrat"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+            <ProgressBar
+                android:layout_width="30dp"
+                android:backgroundTint="#D81515"
+                android:layout_gravity="center"
+                android:id="@+id/progress_covid"
+                android:visibility="gone"
+                android:layout_height="30dp"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
+        android:id="@+id/result_cardview"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/result_text"
+                android:fontFamily="@font/montserrat"
+                android:textSize="22sp"
+                android:text="High Risk of Covid Infection"
+                android:textColor="#fff"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/advice_text"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#fff"
+                android:textSize="22sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

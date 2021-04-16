@@ -1,38 +1,45 @@
 
 package com.example.covid_19tracker;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +51,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -54,7 +60,8 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.material.circularreveal.CircularRevealHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,12 +71,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static android.app.NotificationManager.IMPORTANCE_DEFAULT;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final int request_case_permission =1;
+
+    String [] messages={"Clean your hands often. Use soap and water, or an alcohol-based hand rub.",
+    "Maintain a safe distance from anyone who is coughing or sneezing.",
+    "Wear a mask when physical distancing is not possible.",
+    "Always wear a mask when you are going away from home",
+    "Carry a Hand Sanitizer wherever you go",
+    "Take Covid vaccine if not taken already",
+    "Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water",
+    "Stay home and self-isolate even if you have minor symptoms such as cough, headache, mild fever"};
+
+    Switch switch1;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     ProgressBar progressBar;
     String city,state;
@@ -83,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TableLayout tableLayout;
     TextView st_text,ACTIVE,RECOVERED,CONFIRMED,DEATH,current_loc,curr_conf,curr_activ,curr_recov,curr_death,head,current_state
             ,current_date,state_daily_confirmed,state_daily_recovered,state_daily_death,heading_state,
-    state_tested,state_vaccinated, test_cout_total, vacci_cout_total,test1,test2,statetest;
+    state_tested,state_vaccinated, test_cout_total, vacci_cout_total,test1,test2,statetest,assess_info;
     private Integer[] images={R.drawable.s1,R.drawable.s2,R.drawable.s3,R.drawable.s4,R.drawable.s5,R.drawable.s6
     ,R.drawable.s7,R.drawable.s8,R.drawable.s9,R.drawable.s10,R.drawable.s12,R.drawable.s13,R.drawable.s14};
     CardView qanda,symptoms,prevention,helpline,maps;
@@ -92,16 +115,104 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LocationManager locationManager;
     FusedLocationProviderClient fusedLocationProviderClient;
     HorizontalScrollView state_scroll;
+    ImageView switch_info;
+    FloatingActionButton assess;
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        switch1=findViewById(R.id.switch1);
+        switch_info=findViewById(R.id.swithc_info);
+        assess=findViewById(R.id.self_assess);
+
+        scrollView=findViewById(R.id.scrollView2);
+
+        assess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,Covid_Predict.class));
+            }
+        });
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                int scrolldis= scrollView.getScrollY();
+                if(scrolldis>200)
+                {
+                    assess.hide();
+                }
+                else
+                {
+                    assess.show();
+                }
+            }
+        });
+
+        switch_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast= new Toast(MainActivity.this);
+                toast.setDuration(Toast.LENGTH_LONG);
+                View layout= LayoutInflater.from(MainActivity.this).inflate(R.layout.toast_layout,null, false);
+                TextView l1= layout.findViewById(R.id.toast_text);
+                l1.setText("Notification to receive safety measures");
+                toast.setView(layout);
+                toast.setGravity(Gravity.BOTTOM,0,0);
+                toast.show();
+
+
+                           }
+        });
+
+        sharedPreferences=getSharedPreferences("MyPref",Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        switch1.setChecked(sharedPreferences.getBoolean("isChecked",false));
+
+        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O)
+        {
+            NotificationChannel channel = new NotificationChannel("Safety Notification","Safety Notification",IMPORTANCE_DEFAULT);
+            NotificationManager manager =getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        if(switch1.isChecked())
+        {
+            Random random = new Random();
+            int c= random.nextInt(messages.length);
+            String msg=messages[c];
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"Safety Notification");
+            builder.setContentTitle("Safety Measure from Covid App");
+            builder.setContentText(msg);
+            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+            builder.setAutoCancel(true);
+            builder.setColor(getResources().getColor(R.color.orange));
+            builder.setStyle(new NotificationCompat.BigTextStyle().bigText(msg));
+
+            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+            managerCompat.notify(1,builder.build());
+        }
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                {
+                        editor.putBoolean("isChecked",true);
+
+                }
+                else
+                {
+                        editor.putBoolean("isChecked",false);
+
+                }
+                editor.commit();
+            }
+        });
 
         ///current locaton ids
 
@@ -217,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tableLayout=findViewById(R.id.state_table);
 
-        share = findViewById(R.id.share_btn);
+
 
         pieChart = findViewById(R.id.piechart);
 
@@ -395,6 +506,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         requestQueue.add(request);
         requestQueue.add(request_test);
+
+
+
     }
 
 
@@ -962,7 +1076,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == 100 && grantResults.length>0){
             if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
@@ -1279,6 +1393,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         state_scroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
         state_scroll.fullScroll(HorizontalScrollView.FOCUS_LEFT);
     }
+
 
 }
 

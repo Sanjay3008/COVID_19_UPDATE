@@ -11,7 +11,6 @@ import android.widget.Button;
 public class corona_helpline extends AppCompatActivity implements View.OnClickListener {
 
     Button share, tamilnadu, andaman, andra, arunachal, assam, bihar, chandigarh, chattisgarh, delhi, damanddieu, goa, gujarat, himachal, haryana, jharkhand, jammu, karnataka, kerala, ladakh, lakshadweep, maharastra, meghalaya, manipur, madhya_pradesh, mizoram, nagaland, odisha, punjab, pudhucherry, rajasthan, sikkim, telangana, tripura, uttarpradesh, uttarkhand, westbengal;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
