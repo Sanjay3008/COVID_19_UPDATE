@@ -24,7 +24,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Covid_Predict"></activity>
+        <activity android:name=".update_covid"></activity>
+        <activity android:name=".CovidUpload" />
+        <activity android:name=".Covid_Predict" />
         <activity android:name=".splashactivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -152,7 +154,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

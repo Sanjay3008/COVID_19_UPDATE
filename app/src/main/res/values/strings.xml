@@ -127,5 +127,6 @@
     <string name="current_location">Current Location</string>
     <string name="your_location_covid_19_status">Your Location Covid-19 status</string>
     <string name="date">Date:</string>
+    <string name="update_covid_data">Update Covid Data</string>
 </resources>
 

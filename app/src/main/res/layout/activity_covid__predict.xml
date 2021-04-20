@@ -33,6 +33,13 @@
             android:focusableInTouchMode="true"
             android:textOn="Connected"
             android:thumb="@drawable/thumb" />
+        <ProgressBar
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/server_progress"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:indeterminateTint="#EB55A7" />
 
 
     </LinearLayout>
@@ -102,7 +109,7 @@
         android:layout_margin="10dp"
         android:backgroundTint="#9AD5EC"
         app:cardCornerRadius="20dp"
-        android:layout_height="220dp">
+        android:layout_height="210dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:id="@+id/questions"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#7B1FA2"
@@ -164,12 +171,12 @@
                 android:textSize="16sp"
                 android:textColor="#000"/>
             <ProgressBar
-                android:layout_width="30dp"
-                android:backgroundTint="#D81515"
+                android:layout_width="25dp"
+                android:indeterminateTint="#EB55A7"
                 android:layout_gravity="center"
                 android:id="@+id/progress_covid"
                 android:visibility="gone"
-                android:layout_height="30dp"/>
+                android:layout_height="25dp"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

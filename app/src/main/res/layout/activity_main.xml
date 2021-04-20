@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fffafa"
@@ -11,52 +11,151 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/self_assess"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/track_corono"
-            android:textAllCaps="true"
-            android:textColor="#000"
-            android:textSize="18sp" />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/track_corono"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="15sp" />
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_marginStart="8dp"
+                android:thumb="@drawable/thumb"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/montserrat"
+                android:layout_gravity="center_vertical"
+                android:text="NOTIFICATIONS"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/swithc_info"
+                android:layout_width="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="25dp"
+                android:src="@drawable/mark" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/self_assess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="#D4F39B"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="#F3DD9B"
         android:src="@drawable/self_assess"
-        android:id="@+id/self_assess"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:fabSize="auto"
         android:tooltipText="Self Assessment for Covid"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:maxImageSize="35dp" />
+
+        app:fabSize="auto"
+        app:layout_constraintEnd_toStartOf="@+id/covid_database"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:maxImageSize="30dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/covid_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="#AFE6EE"
+
+        android:fitsSystemWindows="true"
+        android:src="@drawable/database_icon"
+        android:tooltipText="Covid Database"
+        app:fabSize="auto"
+        app:layout_constraintEnd_toStartOf="@+id/upload_Covid"
+        app:layout_constraintStart_toEndOf="@+id/self_assess"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:maxImageSize="30dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/upload_Covid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:backgroundTint="#EEAAAA"
+        android:fitsSystemWindows="true"
+        android:src="@drawable/covid_upload"
+        android:tooltipText="Upload Your Details"
+        android:visibility="gone"
+        app:fabSize="auto"
+        app:layout_constraintStart_toEndOf="@+id/covid_database"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:maxImageSize="28dp" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/update_Covid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="#C0DF77"
+        android:fitsSystemWindows="true"
+        android:src="@drawable/covid_update"
+        android:tooltipText="Upload Your Details"
+        android:visibility="gone"
+        app:fabSize="auto"
+        app:layout_constraintStart_toEndOf="@+id/view_covid"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:maxImageSize="28dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/view_covid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="#AEB6BE"
+        android:fitsSystemWindows="true"
+        android:src="@drawable/covid_view"
+        android:tooltipText="View Covid Patients Details"
+        android:visibility="gone"
+        app:fabSize="auto"
+        app:layout_constraintStart_toEndOf="@+id/upload_Covid"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:maxImageSize="28dp" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,34 +169,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:thumbTint="#589CC9"
-                    android:trackTint="#B6B5B5" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="NOTIFICATIONS"
-                    android:textAllCaps="true"
-                    android:textColor="#000"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:id="@+id/swithc_info"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/mark" />
-            </LinearLayout>
 
             <GridLayout
                 android:layout_width="wrap_content"

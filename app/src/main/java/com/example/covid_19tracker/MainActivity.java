@@ -31,9 +31,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -61,6 +65,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 
 import org.json.JSONArray;
@@ -116,18 +121,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FusedLocationProviderClient fusedLocationProviderClient;
     HorizontalScrollView state_scroll;
     ImageView switch_info;
-    FloatingActionButton assess;
+    FloatingActionButton assess,database,upload_covid,view_covid,update_covid;
     ScrollView scrollView;
+
+
+//
+
+    private boolean opened =false;
+    Animation fade_i,fade_o;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         switch1=findViewById(R.id.switch1);
         switch_info=findViewById(R.id.swithc_info);
         assess=findViewById(R.id.self_assess);
+        database=findViewById(R.id.covid_database);
+        upload_covid=findViewById(R.id.upload_Covid);
+        view_covid=findViewById(R.id.view_covid);
+        update_covid=findViewById(R.id.update_Covid);
+
+        update_covid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_u =new Intent(MainActivity.this,update_covid.class);
+                startActivity(intent_u);
+            }
+        });
+
+        upload_covid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(MainActivity.this,CovidUpload.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        database.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!opened)
+                {
+                    fade_i = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
+                    upload_covid.setAnimation(fade_i);
+                    view_covid.setAnimation(fade_i);
+                    update_covid.setAnimation(fade_i);
+
+                    upload_covid.setVisibility(View.VISIBLE);
+                    view_covid.setVisibility(View.VISIBLE);
+                    update_covid.setVisibility(View.VISIBLE);
+                    opened=true;
+
+                }
+                else
+                {
+                    fade_o = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_out);
+                    upload_covid.setAnimation(fade_o);
+                    view_covid.setAnimation(fade_o);
+                    update_covid.setAnimation(fade_o);
+                    upload_covid.setVisibility(View.GONE);
+                    view_covid.setVisibility(View.GONE);
+                    update_covid.setVisibility(View.GONE);
+                    opened=false;
+
+                }
+            }
+        });
 
         scrollView=findViewById(R.id.scrollView2);
 
@@ -137,20 +202,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this,Covid_Predict.class));
             }
         });
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                int scrolldis= scrollView.getScrollY();
-                if(scrolldis>200)
-                {
-                    assess.hide();
-                }
-                else
-                {
-                    assess.show();
-                }
-            }
-        });
+
 
         switch_info.setOnClickListener(new View.OnClickListener() {
             @Override

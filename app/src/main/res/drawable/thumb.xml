@@ -4,19 +4,19 @@
     <item android:state_checked="true">
         <shape android:shape="oval">
             <solid android:color="#4CB350"></solid>
-            <stroke android:width="1dp"
+            <stroke android:width="0.5dp"
                 android:color="#22524C"/>
-            <size android:width="25dp"
-                android:height="25dp"/>
+            <size android:width="18dp"
+                android:height="18dp"/>
         </shape>
     </item>
     <item android:state_checked="false">
         <shape android:shape="oval">
             <solid android:color="#E64C4C"></solid>
-            <stroke android:width="1dp"
+            <stroke android:width="0.5dp"
                 android:color="#742D30"/>
-            <size android:width="25dp"
-                android:height="25dp"/>
+            <size android:width="18dp"
+                android:height="18dp"/>
         </shape>
     </item>
 

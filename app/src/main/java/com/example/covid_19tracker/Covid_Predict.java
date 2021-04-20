@@ -37,7 +37,7 @@ public class Covid_Predict extends AppCompatActivity {
     boolean started=false;
     CardView server_status,result_card;
     RequestQueue requestQueue;
-    ProgressBar progressBar;
+    ProgressBar progressBar,server_progress;
     boolean server_connected =false;
     ImageView imageView;
     Switch switch2;
@@ -85,18 +85,21 @@ public class Covid_Predict extends AppCompatActivity {
         imageView=findViewById(R.id.server_info);
         requestQueue= Volley.newRequestQueue(this);
         switch2=findViewById(R.id.switch_server);
+        server_progress=findViewById(R.id.server_progress);
 
         switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b)
                 {
+                    server_progress.setVisibility(View.VISIBLE);
                     StringRequest c = new StringRequest(Request.Method.GET, "https://covidsymptomspredict.herokuapp.com/", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Toast.makeText(getApplicationContext(),"Server Connected Successfully",Toast.LENGTH_SHORT).show();
                             switch2.setChecked(true);
                             server_connected=true;
+                            server_progress.setVisibility(View.GONE);
 
                         }
                     }, new Response.ErrorListener() {
@@ -105,10 +108,17 @@ public class Covid_Predict extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Server Not Connected. Plz try again",Toast.LENGTH_SHORT).show();
                             switch2.setChecked(false);
                             server_connected=false;
+                            server_progress.setVisibility(View.GONE);
                         }
                     });
                     requestQueue.add(c);
 
+
+                }
+                else
+                {
+                    server_connected=false;
+                    Toast.makeText(Covid_Predict.this, "Enable Server to take covid assessment", Toast.LENGTH_SHORT).show();
                 }
 
             }
