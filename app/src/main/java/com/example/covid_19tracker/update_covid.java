@@ -56,7 +56,12 @@ public class update_covid extends AppCompatActivity {
                 final String A_Email_U = u3.getText().toString();
                 final String A_Pass_U = u4.getText().toString();
 
-                if (!Family_ID_U.isEmpty() && !Covid_positive_U.isEmpty() && !A_Email_U.isEmpty() && !A_Pass_U.isEmpty())
+                if(!Family_ID_U.substring(0,6).equals("INDGOV"))
+                {
+                    Toast.makeText(getApplicationContext(),"Enter a valid Family Id",Toast.LENGTH_SHORT).show();
+                }
+
+                else if (!Family_ID_U.isEmpty() && !Covid_positive_U.isEmpty() && !A_Email_U.isEmpty() && !A_Pass_U.isEmpty())
                 {
                     Credentials credentials = Credentials.emailPassword(A_Email_U, A_Pass_U);
 
@@ -80,39 +85,55 @@ public class update_covid extends AppCompatActivity {
                                             if(result.get()!=null)
                                             {
                                                 Document curr=result.get();
-                                                if(curr.getString("Family ID").equals(Family_ID_U))
+
+                                                if(curr.getString("Family ID").equals(Family_ID_U) )
                                                 {
-                                                    Toast.makeText(update_covid.this, "User Found", Toast.LENGTH_SHORT).show();
-                                                    curr.append("Covid Positive Counts",Covid_positive_U);
-                                                    mongoCollection.updateOne(query,curr).getAsync(new App.Callback<UpdateResult>() {
-                                                        @Override
-                                                        public void onResult(App.Result<UpdateResult> result_u) {
-                                                            if(result_u.isSuccess())
-                                                            {
-                                                                Toast.makeText(update_covid.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
-                                                                u1.setText("");
-                                                                u2.setText("");
-                                                                u3.setText("");
-                                                                u4.setText("");
-                                                                u1.requestFocus();
+                                                    if(!curr.getString("email").equals(A_Email_U))
+                                                    {
+                                                        Toast.makeText(update_covid.this, "Entered Admin don't have rights to Update!", Toast.LENGTH_SHORT).show();
+                                                        u3.setText("");
+                                                        u4.setText("");
+                                                        progressBar_u.setVisibility(View.GONE);
+                                                    }
+                                                    else {
+                                                        Toast.makeText(update_covid.this, "User Found", Toast.LENGTH_SHORT).show();
+                                                        curr.append("Covid Positive Counts", Covid_positive_U);
+                                                        mongoCollection.updateOne(query, curr).getAsync(new App.Callback<UpdateResult>() {
+                                                            @Override
+                                                            public void onResult(App.Result<UpdateResult> result_u) {
+                                                                if (result_u.isSuccess()) {
+                                                                    Toast.makeText(update_covid.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                                                                    u1.setText("");
+                                                                    u2.setText("");
+                                                                    u3.setText("");
+                                                                    u4.setText("");
+                                                                    u1.requestFocus();
+                                                                    progressBar_u.setVisibility(View.GONE);
+                                                                } else {
+                                                                    Toast.makeText(update_covid.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                                                                    progressBar_u.setVisibility(View.GONE);
+                                                                }
                                                             }
-                                                            else
-                                                            {
-                                                                Toast.makeText(update_covid.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    });
+                                                        });
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Toast.makeText(update_covid.this, "Family Id Not Found", Toast.LENGTH_SHORT).show();
+                                                    progressBar_u.setVisibility(View.GONE);
                                                 }
                                             }
                                             else
                                             {
                                                 Toast.makeText(update_covid.this, "Family Id Not Found", Toast.LENGTH_SHORT).show();
+                                                progressBar_u.setVisibility(View.GONE);
                                             }
 
                                         }
                                         else
                                         {
                                             Toast.makeText(update_covid.this, "Invalid Admin. Sign In Failed", Toast.LENGTH_SHORT).show();
+                                            progressBar_u.setVisibility(View.GONE);
                                         }
                                     }
                                 });

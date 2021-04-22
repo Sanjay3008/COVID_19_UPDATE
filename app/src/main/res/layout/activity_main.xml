@@ -789,12 +789,12 @@
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserrat"
                             android:textColor="#000000"
-                            android:textSize="20sp"></TextView>
+                            android:textSize="18sp"></TextView>
 
                         <ProgressBar
                             android:id="@+id/progressbar"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
                             android:layout_marginStart="250dp"
                             android:indeterminateTint="#D65BA3"
                             android:visibility="gone" />

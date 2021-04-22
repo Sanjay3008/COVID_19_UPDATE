@@ -13,6 +13,7 @@ import io.realm.mongodb.mongo.MongoDatabase;
 import io.realm.mongodb.mongo.iterable.MongoCursor;
 import io.realm.mongodb.mongo.result.InsertOneResult;
 
+import android.app.ActivityManager;
 import android.os.Bundle;
 
 import android.view.View;
@@ -25,6 +26,25 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.bson.Document;
 
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+import java.util.regex.Pattern;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 
 public class CovidUpload extends AppCompatActivity {
 
@@ -35,7 +55,7 @@ public class CovidUpload extends AppCompatActivity {
 
 
 
-    TextInputEditText p1,p2,p3,p4,p5,p6,p7,p8,p9;
+    TextInputEditText p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
     Button upload_database;
     ProgressBar progressBar;
 
@@ -53,9 +73,9 @@ public class CovidUpload extends AppCompatActivity {
         p7=findViewById(R.id.pincode);
         p8=findViewById(R.id.admin_email);
         p9=findViewById(R.id.admin_pass);
+        p10 = findViewById(R.id.Address);
         upload_database=findViewById(R.id.Upload_Database);
         progressBar=findViewById(R.id.progress_upload);
-
 
 
         Realm.init(this);
@@ -68,18 +88,33 @@ public class CovidUpload extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                final String Family_ID = p1.getText().toString();
-                final String Total = p2.getText().toString();
-                final String Covid_positive = p3.getText().toString();
-                final String State = p4.getText().toString();
-                final String District = p5.getText().toString();
-                final String Area = p6.getText().toString();
-                final String Pincode = p7.getText().toString();
+
+                final String Family_ID = p1.getText().toString().toUpperCase();
+                final String Total = p2.getText().toString().toUpperCase();
+                final String Covid_positive =p3.getText().toString().toUpperCase();
+                final String address = p10.getText().toString().toUpperCase();
+                final String State = p4.getText().toString().toUpperCase();
+                final String District =p5.getText().toString().toUpperCase();
+                final String Area = p6.getText().toString().toUpperCase();
+                final String Pincode = p7.getText().toString().toUpperCase();
                 final String A_Email = p8.getText().toString();
                 final String A_Pass = p9.getText().toString();
 
-                if (!Family_ID.isEmpty() && !Total.isEmpty() && !Covid_positive.isEmpty() && !State.isEmpty() && !District.isEmpty()
-                        && !Area.isEmpty() && !Pincode.isEmpty() && !A_Email.isEmpty() && !A_Pass.isEmpty()) {
+
+
+
+                if(Family_ID.length()<8)
+                {
+                    Toast.makeText(CovidUpload.this, "Please Enter Valid Family ID of length 8", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+                else if(!Family_ID.substring(0,6).equals("INDGOV"))
+                {
+                    Toast.makeText(getApplicationContext(),"Family Id not matched. Please ensure that Correct Family Id is given",Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+                else if (!Family_ID.isEmpty() && !Total.isEmpty() && !Covid_positive.isEmpty() && !State.isEmpty() && !District.isEmpty()
+                        && !Area.isEmpty() && !Pincode.isEmpty() && !A_Email.isEmpty() && !A_Pass.isEmpty() && !address.isEmpty()) {
                     Credentials credentials = Credentials.emailPassword(A_Email, A_Pass);
 
                     app.loginAsync(credentials, new App.Callback<User>() {
@@ -115,7 +150,7 @@ public class CovidUpload extends AppCompatActivity {
                                             if(!duplicate)
                                             {
                                                 mongoCollection.insertOne(new Document("email", A_Email).append("Family ID", Family_ID).append("Total Family Members", Total)
-                                                        .append("Covid Positive Counts", Covid_positive).append("State", State).append("District", District)
+                                                        .append("Covid Positive Counts", Covid_positive).append("Address",address).append("State", State).append("District", District)
                                                         .append("Area", Area).append("Pincode", Pincode)).getAsync(new App.Callback<InsertOneResult>() {
                                                     @Override
                                                     public void onResult(App.Result<InsertOneResult> result) {
@@ -130,11 +165,13 @@ public class CovidUpload extends AppCompatActivity {
                                                             p7.setText("");
                                                             p8.setText("");
                                                             p9.setText("");
+                                                            p10.setText("");
                                                             p1.requestFocus();
                                                             progressBar.setVisibility(View.GONE);
 
                                                         } else {
                                                             Toast.makeText(CovidUpload.this, "Upload failed!", Toast.LENGTH_SHORT).show();
+                                                            progressBar.setVisibility(View.GONE);
                                                         }
                                                     }
                                                 });
@@ -149,6 +186,7 @@ public class CovidUpload extends AppCompatActivity {
 
                             else {
                                 Toast.makeText(CovidUpload.this, "Logging Failed. Check Admin Email or Password", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
@@ -158,6 +196,7 @@ public class CovidUpload extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(CovidUpload.this, "Some fields are missing. Please Check & try again", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow android:layout_width="wrap_content"
+    android:id="@+id/family_row"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/covid_family"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="20dp"
+            android:backgroundTint="#E48383">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#0E0E0E"
+                        android:text="Covid Infected:"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/covid_count_"
+                        android:textColor="#0E0E0E"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#0E0E0E"
+                        android:text="Family Members:"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/family_total"
+                        android:textColor="#0E0E0E"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#0E0E0E"
+                        android:text="Address:"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp"/>
+
+                    <TextView
+                        android:id="@+id/family_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/montserrat"
+                        android:singleLine="false"
+                        android:textColor="#0E0E0E"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </TableRow>
+
+

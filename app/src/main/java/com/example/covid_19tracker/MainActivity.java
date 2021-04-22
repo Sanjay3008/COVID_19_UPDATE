@@ -80,6 +80,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.crypto.KeyGenerator;
+
 import static android.app.NotificationManager.IMPORTANCE_DEFAULT;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -144,6 +146,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         upload_covid=findViewById(R.id.upload_Covid);
         view_covid=findViewById(R.id.view_covid);
         update_covid=findViewById(R.id.update_Covid);
+
+        view_covid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_v =new Intent(MainActivity.this,view_covid_user.class);
+                startActivity(intent_v);
+            }
+        });
 
         update_covid.setOnClickListener(new View.OnClickListener() {
             @Override

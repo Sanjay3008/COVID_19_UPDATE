@@ -24,7 +24,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".update_covid"></activity>
+        <activity android:name=".view_covid_user"></activity>
+        <activity android:name=".update_covid" />
         <activity android:name=".CovidUpload" />
         <activity android:name=".Covid_Predict" />
         <activity android:name=".splashactivity">

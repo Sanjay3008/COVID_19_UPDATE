@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view_covid_user">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/view_covid"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:elevation="10dp"
+                android:layout_height="170dp"
+                app:cardCornerRadius="30dp"
+                android:backgroundTint="#92EEECEC"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/covid_infected_people"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="#CB201B20"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Covid Infected People"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </RelativeLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        app:cardCornerRadius="30dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#BBB6B6"
+        android:elevation="10dp"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="1"
+                android:layout_gravity="center_horizontal"
+                android:useDefaultMargins="true">
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="20dp"
+                        android:backgroundTint="#fff">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColorHint="#406270">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/State_user"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0dp"
+                                android:backgroundTint="#fff"
+                                android:layout_marginBottom="6dp"
+                                android:fontFamily="@font/montserrat"
+                                android:gravity="center"
+                                android:hint="State"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="20dp"
+                        android:backgroundTint="#fff">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="#406270">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:hint="District"
+                                android:backgroundTint="#fff"
+                                android:gravity="center"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginBottom="6dp"
+                                android:fontFamily="@font/montserrat"
+                                android:singleLine="true"
+                                android:id="@+id/District_user"
+                                android:layout_height="match_parent"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </GridLayout>
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="#fff">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="#406270">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:hint="Area"
+                            android:backgroundTint="#fff"
+                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="6dp"
+                            android:fontFamily="@font/montserrat"
+                            android:singleLine="true"
+                            android:id="@+id/Area_user"
+                            android:layout_height="match_parent"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Set"
+            android:id="@+id/set_data"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/montserrat"
+            android:background="@drawable/button_background"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:id="@+id/update_data"
+            android:text="Update"
+            android:fontFamily="@font/montserrat"
+            android:background="@drawable/button_background_1"/>
+
+
+    </LinearLayout>
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:indeterminateTint="#E95589"
+        android:visibility="gone"
+        android:id="@+id/family_loading_progressbar"
+        android:layout_gravity="center_horizontal"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableLayout
+            android:shrinkColumns="0"
+            android:stretchColumns="0"
+            android:id="@+id/covid_family_Table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </ScrollView>
+
+
+</LinearLayout>
